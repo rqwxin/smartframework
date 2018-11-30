@@ -3,6 +3,8 @@ package com.cgx.smart4j.framework.helper;
 import com.cgx.smart4j.framework.annotation.Inject;
 import com.cgx.smart4j.framework.utils.ReflectionUtil;
 import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -17,9 +19,10 @@ import java.util.Map;
  * @create: 2018-11-29 17:00
  **/
 public final  class IOCHelper {
-
+    private  static  final Logger logger = LoggerFactory.getLogger(IOCHelper.class);
     static {
         //获取bean 映射关系map
+        logger.info("控制反转类");
         Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
         if (beanMap!=null&&!beanMap.isEmpty()){
           for(Map.Entry<Class<?>, Object> bean: beanMap.entrySet()){
@@ -37,6 +40,7 @@ public final  class IOCHelper {
                           Object fieldBean = beanMap.get(type);
                           if (fieldBean!=null){
                               //反射设置成员变量
+                              logger.info("设置成员变量:"+field.getName());
                               ReflectionUtil.setField(beanInstance,field,fieldBean);
                           }
                       }

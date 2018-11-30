@@ -24,7 +24,7 @@ public class PropertiesUtil {
 
     private static void init() {
         props = new Properties();
-        URL url = PropertiesUtil.class.getClassLoader().getResource("/");
+        URL url = PropertiesUtil.class.getClassLoader().getResource("./conf");
         File file = new File(url.getPath());
         File[] files = file.listFiles();
         for (File f : files){

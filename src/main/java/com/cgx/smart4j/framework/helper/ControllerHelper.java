@@ -12,11 +12,14 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**********
  * @program: smartframework
- * @description:
+ * @description: 解析controller 类 action 注解
+ * 1、匹配带有Action注解的方法
+ * 2、将Action 里的请求内容存放到 actionMap，key 就是request 对象，参数为获取请求方法与请求路径,value 为 被Action注解的方法
  * @author: cgx
  * @create: 2018-11-29 17:48
  **/
 public class ControllerHelper {
+
     private static Map<Request,CtrlHandle> actionMap = new ConcurrentHashMap<>();
     static {
         Set<Class<?>> controllerClassSet = ClassHelper.getControllerClassSet();

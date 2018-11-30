@@ -1,6 +1,8 @@
 package com.cgx.smart4j.framework.helper;
 
 import com.cgx.smart4j.framework.utils.ReflectionUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 public class BeanHelper {
 
+    private  static  final Logger logger = LoggerFactory.getLogger(BeanHelper.class);
     /***************
      * bean映射(存放bean类与bean实例的映射关系)
      */
@@ -22,6 +25,7 @@ public class BeanHelper {
     static {
         Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
         for (Class<?> cl :beanClassSet){
+            logger.info("实例化bean:"+cl.getSimpleName());
             Object o = ReflectionUtil.newInstance(cl);
             BEAN_MAP.put(cl,o);
         }

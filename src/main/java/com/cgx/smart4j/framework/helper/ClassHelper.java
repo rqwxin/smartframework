@@ -5,6 +5,8 @@ import com.cgx.smart4j.framework.constant.ConfigConstant;
 import com.cgx.smart4j.framework.utils.ClassUtil;
 import com.cgx.smart4j.framework.utils.PropertiesUtil;
 import  com.cgx.smart4j.framework.annotation.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,10 +18,11 @@ import java.util.Set;
  * @create: 2018-11-29 16:14
  **/
 public class ClassHelper {
-
+    private  static  final Logger logger = LoggerFactory.getLogger(ClassHelper.class);
     private static Set<Class<?>> CLASS_SET = null;
     static {
         String packageName = PropertiesUtil.getProperty(ConfigConstant.BASE_PACKAGE);
+        logger.info("类加载路径:"+packageName);
         CLASS_SET = ClassUtil.getClassSet(packageName);
     }
 
@@ -35,6 +38,7 @@ public class ClassHelper {
         Set<Class<?>> serviceSet = new HashSet<>();
         for (Class<?> cl:  CLASS_SET ) {
             if (cl.isAnnotationPresent(Service.class)){
+                logger.info("service class:"+cl.getSimpleName());
                 serviceSet.add(cl);
             }
         }
@@ -49,6 +53,7 @@ public class ClassHelper {
         Set<Class<?>> classSet = new HashSet<>();
         for (Class<?> cl:  CLASS_SET ) {
             if (cl.isAnnotationPresent(Controller.class)){
+                logger.info("controller class:"+cl.getSimpleName());
                 classSet.add(cl);
             }
         }
@@ -62,7 +67,7 @@ public class ClassHelper {
     public static Set<Class<?>> getBeanClassSet(){
         Set<Class<?>> classSet = new HashSet<>();
         classSet.addAll(getControllerClassSet());
-        classSet.addAll(getControllerClassSet());
+        classSet.addAll(getServiceClassSet());
         return  classSet;
     }
 }

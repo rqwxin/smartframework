@@ -7,7 +7,7 @@ package com.cgx.smart4j.framework.constant;
  * @create: 2018-11-29 15:38
  **/
 public interface ConfigConstant {
-    String  CONFIG_NAME = "smart.properties";
+    String  CONFIG_NAME = "conf/smart.properties";
     String JDBC_DRIVER = "jdbc.driver";
     String JDBC_URL = "jdbc.url";
     String  JDBC_USERNAME = "jdbc.username";
