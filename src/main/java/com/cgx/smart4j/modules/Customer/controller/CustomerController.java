@@ -23,8 +23,14 @@ public class CustomerController {
     private CustomerService customerService;
 
     @Action("get:/customer")
-    public View index(Param param){
+    public View index(){
         List<Customerdto> list = customerService.getList();
         return  new View("customer.jsp").addModel("list",list);
+    }
+
+    @Action("get:/customer_add")
+    public View add(Param param){
+        customerService.add();
+        return  new View("index.jsp");
     }
 }

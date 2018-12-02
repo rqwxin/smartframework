@@ -1,6 +1,7 @@
 package com.cgx.smart4j.modules.Customer.service;
 
 import com.cgx.smart4j.framework.annotation.Service;
+import com.cgx.smart4j.framework.annotation.Transaction;
 import com.cgx.smart4j.modules.Customer.dto.Customerdto;
 
 import java.util.LinkedList;
@@ -30,5 +31,10 @@ public class CustomerService {
             ls.add(c1);
         }
         return  ls;
+    }
+
+    @Transaction
+    public void add(){
+        System.out.println("新增方法");
     }
 }

@@ -1,9 +1,6 @@
 package com.cgx.smart4j.framework;
 
-import com.cgx.smart4j.framework.helper.BeanHelper;
-import com.cgx.smart4j.framework.helper.ClassHelper;
-import com.cgx.smart4j.framework.helper.ControllerHelper;
-import com.cgx.smart4j.framework.helper.IOCHelper;
+import com.cgx.smart4j.framework.helper.*;
 import com.cgx.smart4j.framework.utils.ClassUtil;
 import com.cgx.smart4j.framework.utils.ReflectionUtil;
 import org.slf4j.Logger;
@@ -24,6 +21,7 @@ public final class HelperLoader {
         Class<?> classList[] = {
                 ClassHelper.class,
                 BeanHelper.class,
+                AopHelper.class,
                 IOCHelper.class,
                 ControllerHelper.class
         };

@@ -9,7 +9,11 @@ import java.util.Map;
  * @create: 2018-11-30 09:22
  **/
 public class Param {
-    private Map<String ,Object> paramMap;
+    private  Map<String ,Object> paramMap;
+
+    public  boolean isEmpty(){
+        return paramMap.isEmpty();
+    }
 
     public Param(Map<String, Object> paramMap) {
         this.paramMap = paramMap;

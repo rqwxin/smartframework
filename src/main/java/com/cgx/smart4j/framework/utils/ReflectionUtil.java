@@ -1,5 +1,8 @@
 package com.cgx.smart4j.framework.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -13,7 +16,7 @@ import java.lang.reflect.Method;
  * @create: 2018-11-29 16:30
  **/
 public class ReflectionUtil {
-
+private static final Logger logger = LoggerFactory.getLogger(ReflectionUtil.class);
     /************
      * 实例化对象
      * @param clas
@@ -43,9 +46,8 @@ public class ReflectionUtil {
         try {
             method.setAccessible(true);
             result = method.invoke(obj,args);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (Exception e) {
+            logger.error("方法反射：{},类:{}",method.getName(),obj);
             e.printStackTrace();
         }
         return result;

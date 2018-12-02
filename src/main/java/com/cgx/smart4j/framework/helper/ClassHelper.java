@@ -8,6 +8,7 @@ import  com.cgx.smart4j.framework.annotation.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,5 +70,37 @@ public class ClassHelper {
         classSet.addAll(getControllerClassSet());
         classSet.addAll(getServiceClassSet());
         return  classSet;
+    }
+
+    /*************
+     * 获取某父类下的所有子类
+     * @param superClass
+     * @return
+     */
+    public static Set<Class<?>> getClassSetBySuper(Class<?> superClass){
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class cl :
+                CLASS_SET) {
+            //cl 是否是superClass的实现
+            if(superClass.isAssignableFrom(cl)&&!superClass.equals(cl)){
+                classSet.add(cl);
+            }
+        }
+        return classSet;
+    }
+
+    /**********
+     * 获取指定注解的类
+     * @param annotation
+     * @return
+     */
+    public static Set<Class<?>> getClassSetByAnnotation(Class<? extends Annotation> annotation){
+        Set<Class<?>> classSet = new HashSet<>();
+        for (Class cl :CLASS_SET) {
+            if(cl.isAnnotationPresent(annotation)){
+                classSet.add(cl);
+            }
+        }
+        return classSet;
     }
 }
